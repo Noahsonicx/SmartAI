@@ -1,4 +1,5 @@
 using UnityEngine;
+using agents;
 
 public class Waypoints : MonoBehaviour
 {
