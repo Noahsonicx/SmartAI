@@ -5,6 +5,7 @@ using Door;
 using agents;
 public class DoorTriggerButton : MonoBehaviour
 {
+    /*
     [SerializeField]
     GameObject Door1;
 
@@ -19,4 +20,5 @@ public class DoorTriggerButton : MonoBehaviour
             Door1.transform.position += new Vector3(0, 4, 0);
         }
     }
+    */
 }

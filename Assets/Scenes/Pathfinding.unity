@@ -6142,7 +6142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2abc1c173ef8443b6ab2d028182471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door1: {fileID: 305313651}
 --- !u!1 &613974725
 GameObject:
   m_ObjectHideFlags: 0
@@ -9652,7 +9651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1001299542
 Transform:
   m_ObjectHideFlags: 0
@@ -10156,10 +10155,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073545028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88bd1a2ab4794546a9b9bb6b511b1a0, type: 3}
+  m_Script: {fileID: 11500000, guid: fcd8a673af493274b8d2972ad246e92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isThreat: 0
+  stateMachine:
+    waypoints:
+    - {fileID: 1870877774}
+    - {fileID: 1537703113}
+    - {fileID: 1452383519}
+    - {fileID: 386115162}
+    - {fileID: 474928122}
+    - {fileID: 1717632979}
+    agent: {fileID: 0}
+    Door1: {fileID: 305313651}
+    currentState: 0
 --- !u!195 &1073545030
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12818,7 +12827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2abc1c173ef8443b6ab2d028182471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door1: {fileID: 0}
 --- !u!1 &1402957691
 GameObject:
   m_ObjectHideFlags: 0
