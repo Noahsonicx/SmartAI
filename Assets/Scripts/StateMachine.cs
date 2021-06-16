@@ -26,6 +26,7 @@ namespace SmertAI
         [SerializeField] private AIState currentState = AIState.FollowingPath;
 
         private Transform closestSwitch;
+        private int index = 0;
 
         public void Setup(NavMeshAgent _agent)
         {
@@ -35,6 +36,8 @@ namespace SmertAI
             states.Add(AIState.FollowingPath, FollowPathState);
             states.Add(AIState.TargettingCollectable, TargetCollectableState);
             states.Add(AIState.TargettingSwitch, TargetSwitchState);
+
+            agent.SetDestination(waypoints[0].Position);
         }
 
         public void Run()
@@ -48,10 +51,10 @@ namespace SmertAI
 
         private void FollowPathState()
         {
-            Debug.Log("FollowPathState");
-            agent.SetDestination(waypoints[1].Position);
+            //Debug.Log("FollowPathState");
+            agent.SetDestination(waypoints[index].Position);
 
-            if(agent.pathStatus == NavMeshPathStatus.PathPartial)
+            if (agent.pathStatus == NavMeshPathStatus.PathPartial)
             {
                 DoorTriggerButton[] buttons = GameObject.FindObjectsOfType<DoorTriggerButton>();
                 closestSwitch = null;
@@ -66,17 +69,33 @@ namespace SmertAI
                     }
                 }
 
+                agent.SetDestination(closestSwitch.position);
                 SwitchState(AIState.TargettingSwitch);
-                // Swao to target state
+                // Swap to target state
             }
+
+            else if (agent.remainingDistance <= .1f && !agent.pathPending)
+            {
+                index++;
+            }
+
+            //foreach (index++ > .1f)
+            //{
+            //    SwitchState(AIState.FollowingPath);
+            //}
+            /*for(int i = 0; i < agent.remainingDistance; i++)
+            {
+                return;
+            }
+            */
             // Tell the agent to move to the current waypoint
 
             // I can't reach the waypoint, so I will try to find a switch
-                // I found a switch, so move to the TargetSwitchState
-            
+            // I found a switch, so move to the TargetSwitchState
+
             // There is a collectable nearby, let's grab it!
-        // Vector3.Distance
-        // agent.pathStatus == NavMeshPathStatus.PathPartial // Can't find my way to the waypoint
+            // Vector3.Distance
+            // agent.pathStatus == NavMeshPathStatus.PathPartial // Can't find my way to the waypoint
         }
 
         private void TargetCollectableState()
@@ -86,9 +105,9 @@ namespace SmertAI
 
         private void TargetSwitchState()
         {
-            agent.SetDestination(closestSwitch.position);
+            //agent.SetDestination(closestSwitch.position);
 
-            if (agent.remainingDistance <= .1f)
+            if (agent.remainingDistance <= .1f && !agent.pathPending)
             {
                 Door1.transform.position += new Vector3(0, 4, 0);
                 closestSwitch = null;
