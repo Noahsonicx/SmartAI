@@ -29,14 +29,14 @@ namespace Door
             
         }
 
-        // Add switch/button for the accesible doors, using a list might be viable in this situation, you should now have to press switches to open doors   *
+        // Add switch/button for the accesible doors, using a list might be viable in this situation, you should now have to press switches to open doors - Done *
         // Threat - Done
         // End goal area   *
         // Designated to Door2 - Two Switches for the AI to choose from in order to open a door   *
-        // Also for the final 3rd door it needs a key as a collectable item   *
+        // Also for the final 3rd door it needs a key as a collectable item - Done
         // AI needs to be an animated character   *
         // Start function with a quit button - done 
-        // Reset button that will start the maze all over again  *
+        // Reset button that will start the maze all over again - Done
 
 
     }

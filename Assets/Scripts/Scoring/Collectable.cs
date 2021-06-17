@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SmertAI;
 
-public class Collectable : MonoBehaviour
+namespace CollectableScoring
 {
-
-    void OnTriggerEnter(Collider other)
+    public class Collectable : MonoBehaviour
     {
-        ScoringSystem.theScore += 50;
-        Destroy(gameObject);
+        [SerializeField] private Transform door;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (GameObject.FindObjectsOfType<>)
+            {
+                //ScoringSystem.theScore += 50;
+                door.position += Vector3.up * 5;
+                Destroy(gameObject);
+            }
+        }
     }
 }
