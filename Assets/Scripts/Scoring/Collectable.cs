@@ -11,7 +11,7 @@ namespace CollectableScoring
 
         private void OnTriggerEnter(Collider other)
         {
-            if (GameObject.FindObjectsOfType<>)
+            if (other.gameObject.GetComponent<SmertAgent>())
             {
                 //ScoringSystem.theScore += 50;
                 door.position += Vector3.up * 5;

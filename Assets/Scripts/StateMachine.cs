@@ -21,6 +21,7 @@ namespace SmertAI
     {
         [SerializeField] private Waypoints[] waypoints;
         [SerializeField] private NavMeshAgent agent;
+        [SerializeField] private Animator animator;
         [SerializeField] GameObject Door3;
         [SerializeField] GameObject Door1;
         [SerializeField] GameObject Door2;
@@ -32,9 +33,10 @@ namespace SmertAI
         private Transform nearestCollectableDoorway;
         private int index = 0;
 
-        public void Setup(NavMeshAgent _agent)
+        public void Setup(GameObject _object)
         {
-            agent = _agent;
+            agent = _object.GetComponent<NavMeshAgent>();
+            animator = _object.GetComponentInChildren<Animator>();
 
             // Sync up the states with the relevant functions
             states.Add(AIState.FollowingPath, FollowPathState);
@@ -49,6 +51,8 @@ namespace SmertAI
             // Get the relevant function from the state and run it
             if(states.TryGetValue(currentState, out AIStateDelegate state))
                 state.Invoke();
+
+            animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
         }
 
         public void SwitchState(AIState _newState) => currentState = _newState;
@@ -141,18 +145,21 @@ namespace SmertAI
         {
             //agent.SetDestination(closestSwitch.position);
 
+            // Use all in a bigger if statement
             if (agent.remainingDistance <= .1f && !agent.pathPending)
             {
                 Door3.transform.position += new Vector3(0, 4, 0);
                 closestSwitch = null;
                 SwitchState(AIState.FollowingPath);
             }
-            else if (agent.remainingDistance <= .1f && !agent.pathPending)
+            /*
+            if (agent.remainingDistance <= .1f && !agent.pathPending) // && theThingYouNeedToHappenForThisDoorToOpen == true
             {
                 Door2.transform.position += new Vector3(0, 4, 0);
                 closestSwitch = null;
                 SwitchState(AIState.FollowingPath);
             }
+            */
         }
     } 
 }

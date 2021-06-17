@@ -13,7 +13,7 @@ namespace SmertAI
         // Start is called before the first frame update
         void Start()
         {
-            stateMachine.Setup(gameObject.GetComponent<NavMeshAgent>());
+            stateMachine.Setup(gameObject);
         }
 
         // Update is called once per frame
